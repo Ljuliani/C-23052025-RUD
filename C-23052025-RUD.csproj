@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>C_23052025_RUD</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Pages\NewFolder\**" />
+    <Compile Remove="Pages\Shared\NewFolder\**" />
+    <Content Remove="Pages\NewFolder\**" />
+    <Content Remove="Pages\Shared\NewFolder\**" />
+    <EmbeddedResource Remove="Pages\NewFolder\**" />
+    <EmbeddedResource Remove="Pages\Shared\NewFolder\**" />
+    <None Remove="Pages\NewFolder\**" />
+    <None Remove="Pages\Shared\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Pages\Shared\Class.cs" />
+  </ItemGroup>
+
+</Project>

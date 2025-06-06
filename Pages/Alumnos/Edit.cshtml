@@ -1,0 +1,44 @@
+﻿@page
+@model C_23052025_RUD.Pages.Alumnos.EditModel
+@{
+}
+    <form method="post">
+
+        <input type="hidden" asp-for="Alumno.Id" />
+
+        <div class="form.group">
+            <label asp-for="Alumno.Nombre"></label>
+            <input asp-for="Alumno.Nombre" class="form-control" />
+        </div>
+
+        <div class="form.group">
+            <label asp-for="Alumno.Apellido"></label>
+            <input asp-for="Alumno.Apellido" class="form-control" />
+        </div>
+
+        <div class="form.group">
+            <label asp-for="Alumno.Dni"></label>
+            <input asp-for="Alumno.Dni" class="form-control" />
+        </div>
+
+        <div class="form.group">
+            <label asp-for="Alumno.Ce"></label>
+            <input asp-for="Alumno.Ce" class="form-control" />
+        </div>
+
+        <div class="form.group">
+            <label asp-for="Alumno.Fn"></label>
+            <input asp-for="Alumno.Fn" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+
+
+
+
+
+
+
+    </form>
+
+

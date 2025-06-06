@@ -1,0 +1,26 @@
+﻿@page
+@model C_23052025_RUD.Pages.Carreras.DelateModel
+@{
+}
+
+<input type="hidden" asp-for="Carrera.Id" />
+
+<form method="post">
+    <h4>Are you sure about delate this career?</h4>
+    <div>
+        <strong>Name:</strong> @Model.Carrera.Nombre
+    </div>
+    <div>
+        <strong>Modality:</strong> @Model.Carrera.Modalidad
+    </div>
+    <div>
+        <strong>Duration:</strong> @Model.Carrera.Duracionaños
+    </div>
+    <div>
+        <strong>Title awarded:</strong> @Model.Carrera.Titulootorgado
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-danger">Delate</button>
+    <a asp-page="Index" class="btn btn-secondary">Abort</a>
+</form>

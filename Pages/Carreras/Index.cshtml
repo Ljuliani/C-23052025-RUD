@@ -1,0 +1,42 @@
+﻿@page
+@model C_23052025_RUD.Pages.Carreras.IndexModel
+@{
+}
+
+<a asp-page ="Create" class=" btn btn-success" ab-3 >Upload Superior Degree</a>
+
+@if(Model.Carreras.Count ==0){
+    <p> This page is empty, because anyone don't logest a student</p>
+}else{
+
+<table class="table">
+    <thread>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Modality</th>
+            <th>Duration (In ages)</th>
+            <th>Title awarded</th>
+            <th>For do</th>
+        </tr>
+    </thread>
+    <tbody>
+        @foreach (var carrera in Model.Carreras)
+        {
+
+            <tr>
+                <td>@carrera.Id</td>
+                <td>@carrera.Nombre</td>
+                <td>@carrera.Modalidad</td>
+                <td>@carrera.Duracionaños</td>
+                <td>@carrera.Titulootorgado</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@carrera.Id" class="btn btn-warning btn-sa " >Edit</a>
+                    <a asp-page="Delate" asp-route-id="@carrera.Id" class="btn btn-danger btn-sa ">Delate</a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+}

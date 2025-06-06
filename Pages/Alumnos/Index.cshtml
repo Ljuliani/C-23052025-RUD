@@ -1,0 +1,46 @@
+﻿@page
+@model C_23052025_RUD.Pages.Alumnos.IndexModel
+@{
+}
+<a asp-page ="Create" class=" btn btn-success" ab-3 >Upload Superior Degree</a>
+
+@if (Model.Alumnos.Count == 0)
+{
+    <p> This page is empty, because anyone don't logest a student</p>
+}
+else
+{
+
+
+<table class="table">
+    <thread>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>N° ID</th>
+            <th>E-mail</th>
+            <th>Date of birth</th>
+        </tr>
+    </thread>
+    <tbody>
+        @foreach (var Alumno in Model.Alumnos)
+        {
+
+            <tr>
+                    <td>@Alumno.Id</td>
+                    <td>@Alumno.Nombre</td>
+                    <td>@Alumno.Apellido</td>
+					<td>@Alumno.Dni</td>
+					<td>@Alumno.Ce</td>
+                    <td>@Alumno.Fn?.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@Alumno.Id" class="btn btn-warning btn-sa " >Edit</a>
+                    <a asp-page="Delate" asp-route-id="@Alumno.Id" class="btn btn-danger btn-sa ">Delate</a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+}
