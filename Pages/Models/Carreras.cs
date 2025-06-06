@@ -12,6 +12,7 @@ namespace C_23052025_RUD.Models
 
         public int Duracionaños { get; set; }
         [Required(ErrorMessage = "The field of Title awarded is empty.")]
+        [StringLength(20, MinimumLength = 5, ErrorMessage = "The Title awarded must be at most 20 characters long and 5 short.")]
         public string? Titulootorgado { get; set; }
 
         [Required(ErrorMessage = "The field of Modality is empty.")]
