@@ -28,7 +28,7 @@ namespace C_23052025_RUD.Pages.Alumnos
             {
                 return Page();
             }
-            Alumno.Id = DatosCompartidos.ObtenerNuevoId();
+            //Alumno.Id = DatosCompartidos.ObtenerNuevoId();
             DatosCompartidos.Alumnos.Add(Alumno);
             return RedirectToPage("Index");
 

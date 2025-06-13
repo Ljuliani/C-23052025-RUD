@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using C_23052025_RUD.Models;
 using C_23052025_RUD.Data;
 using C_23052025_RUD.Helpers;
+using System.Collections.Generic;
 
 namespace C_23052025_RUD.Pages.Carreras
 {
@@ -24,10 +25,10 @@ namespace C_23052025_RUD.Pages.Carreras
             {
                 return Page();
             }
-                Carrera.Id = DatosCompartidos.ObtenerNuevoId();
-                DatosCompartidos.Carreras.Add(Carrera);
-                return RedirectToPage("Index");
+            Servicios.ServicioCarrera.AgregarCarrera(Carrera);
+            return RedirectToPage("Index");
             
         }
+
     }
 }
