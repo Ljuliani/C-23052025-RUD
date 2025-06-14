@@ -11,7 +11,7 @@ namespace C_23052025_RUD.Servicios
         {
             if (File.Exists(ruta))
             {
-                return File.ReadAllText(ruta);                
+                return File.ReadAllText(ruta);
             }
             return "[]"; // Retorna un JSON vacío si el archivo no existe
         }
@@ -24,6 +24,19 @@ namespace C_23052025_RUD.Servicios
             return lista ?? new List<Carrera>();
 
         }
+
+        private static Carrera? BuscarCarreraPorId(List<Carrera> lista, int id)
+        {
+            foreach (var carrera in lista)
+            {
+                if (carrera.Id == id)
+                {
+                    return carrera;
+                }
+            }
+            return null; // Retorna null si no se encuentra la carrera con el ID especificado
+        }
+
 
         public static void AgregarCarrera(Carrera nuevaCarrera)
         {
@@ -49,6 +62,35 @@ namespace C_23052025_RUD.Servicios
         {
             string textoJson = JsonSerializer.Serialize(carreras);
             File.WriteAllText(ruta, textoJson);
+        }
+        public static Carrera? BuscarPorId(int id)
+        {
+            var lista = ObtenerCarreras();
+            return BuscarCarreraPorId(lista, id);
+        }
+        public static void EliminarPorId(int id)
+        {
+            var lista = ObtenerCarreras();
+            var carreraAEliminar = BuscarCarreraPorId(lista, id);
+            if (carreraAEliminar != null)
+            {
+                lista.Remove(carreraAEliminar);
+                GuardarCarreras(lista);
+            }
+        }
+        public static void EditarCarrera(Carrera carreraEditada)
+        {
+            var lista = ObtenerCarreras();
+            var carrera = BuscarCarreraPorId(lista, carreraEditada.Id);
+             if (carrera != null)
+             {
+               carrera.Nombre = carreraEditada.Nombre;
+               carrera.Modalidad = carreraEditada.Modalidad;
+               carrera.Duracionaños = carreraEditada.Duracionaños;
+               carrera.Titulootorgado = carreraEditada.Titulootorgado;
+               GuardarCarreras(lista);
+            }
+
         }
     }
 }

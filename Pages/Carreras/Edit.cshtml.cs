@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using C_23052025_RUD.Models;
 using C_23052025_RUD.Data;
+using C_23052025_RUD.Helpers;
+using C_23052025_RUD.Servicios;
 
 namespace C_23052025_RUD.Pages.Carreras
 {
@@ -9,35 +11,26 @@ namespace C_23052025_RUD.Pages.Carreras
     {
         [BindProperty]
         public Carrera Carrera { get; set; }
+        
         public void OnGet(int id)
         {
-            foreach (var c in DatosCompartidos.Carreras)
-            {
-                if (c.Id == id)
-                {
-                    Carrera = c;
-                    break;
-                }
-            }
+         var Modalidades = OpcionesModalidad.Lista;
+         Carrera? carrera = ServicioCarrera.BuscarPorId(id);
+         if (carrera != null)
+         {
+          Carrera = carrera;
+         }
         }
         public IActionResult OnPost() 
         {
-            if(!ModelState.IsValid)
-            {
-                return Page();
+         var Modalidades = OpcionesModalidad.Lista;
+         if (!ModelState.IsValid)
+            { 
+         
+         return Page();
             }
-            foreach(var c in DatosCompartidos.Carreras)
-            {
-                if(c.Id == Carrera.Id)
-                {
-                    c.Nombre = Carrera.Nombre;
-                    c.Modalidad = Carrera.Modalidad;
-                    c.Duracionaños = Carrera.Duracionaños;
-                    c.Titulootorgado = Carrera.Titulootorgado;
-                    break;
-                }
-            }
-            return RedirectToPage("index");
+            ServicioCarrera.EditarCarrera(Carrera);
+            return RedirectToPage("Index");
         }
     }
 }

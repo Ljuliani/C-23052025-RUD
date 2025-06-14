@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using C_23052025_RUD.Models;
-using C_23052025_RUD.Data;
+using C_23052025_RUD.Servicios;
 
 namespace C_23052025_RUD.Pages.Carreras
 {
@@ -9,33 +9,20 @@ namespace C_23052025_RUD.Pages.Carreras
     {
         [BindProperty]
         public Carrera Carrera { get; set; }
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
-            foreach (var c in DatosCompartidos.Carreras)
+            var carrera = ServicioCarrera.BuscarPorId(id);
+            if (carrera == null)
             {
-                if (c.Id == id)
-                {
-                    Carrera = c;
-                    break;
-                }
+                return RedirectToPage("Index");
             }
+            Carrera = carrera;
+            return Page();
         }
-        public IActionResult OnPost() 
+        public IActionResult OnPost(int id) 
         {
-            Carrera carreraAEliminar = null;
-            foreach(var c in DatosCompartidos.Carreras)
-            {
-                if(c.Id == Carrera.Id)
-                {
-                    carreraAEliminar = c;
-                    break;
-                }
-            }
-            if(carreraAEliminar !=null)
-            {
-                DatosCompartidos.Carreras.Remove(carreraAEliminar);
-            }
-            return RedirectToPage("index");
+         ServicioCarrera.EliminarPorId(id);
+         return RedirectToPage("Index");
         }
     }
 }
