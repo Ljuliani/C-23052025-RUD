@@ -1,4 +1,5 @@
 ﻿using C_23052025_RUD.Models;
+using System.Net;
 using System.Text.Json;
 using System.Xml.Linq;
 
@@ -37,15 +38,22 @@ namespace C_23052025_RUD.Servicios
             }
 
 
-            public static void AgregarAlumno(Alumno nuevoAlumno)
+        public static void AgregarAlumno(Alumno nuevoAlumno)
+        {
+            if (CDD(nuevoAlumno.Dni))
             {
-                var alumnos = ObtenerAlumnos();
-                nuevoAlumno.Id = ObtenerNuevoId(alumnos);
-                alumnos.Add(nuevoAlumno);
-                GuardarAlumnos(alumnos);
 
+                return;
+                
             }
-            public static int ObtenerNuevoId(List<Alumno> alumnos)
+
+            var alumnos = ObtenerAlumnos();
+            nuevoAlumno.Id = ObtenerNuevoId(alumnos);
+            alumnos.Add(nuevoAlumno);
+            GuardarAlumnos(alumnos);
+        }
+
+        public static int ObtenerNuevoId(List<Alumno> alumnos)
             {
                 int maxId = 0;
                 foreach (var alumno in alumnos)
@@ -92,6 +100,10 @@ namespace C_23052025_RUD.Servicios
                 }
 
             }
+        public static bool CDD(int dni)
+        {
+            return ObtenerAlumnos().Any(alumno => alumno.Dni == dni && alumno.Dni > 0);
+        }
     }
 }
 
