@@ -15,21 +15,20 @@ namespace C_23052025_RUD.Pages.Alumnos
 
         public IActionResult OnPost()
         {
-            if(DatosCompartidos.Alumnos.Any(a=> a.Ce == Alumno.Ce))
+            /*if (Servicios.ServicioAlumno.Alumnos.Any(a=> a.Ce == Alumno.Ce))
             {
                 ModelState.AddModelError("Alumno.Ce", "Currently the E-Mail it's exists");
             }
             if(DatosCompartidos.Alumnos.Any(a=> a.Dni == Alumno.Dni))
             {
                 ModelState.AddModelError("Alumno.Dni", "Currently this ID it's exists");
-            }
+            }*/
 
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            //Alumno.Id = DatosCompartidos.ObtenerNuevoId();
-            DatosCompartidos.Alumnos.Add(Alumno);
+            Servicios.ServicioAlumno.AgregarAlumno(Alumno);
             return RedirectToPage("Index");
 
         }

@@ -1,7 +1,9 @@
+using C_23052025_RUD.Data;
+using C_23052025_RUD.Helpers;
+using C_23052025_RUD.Models;
+using C_23052025_RUD.Servicios;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using C_23052025_RUD.Models;
-using C_23052025_RUD.Data;
 
 
 namespace C_23052025_RUD.Pages.Alumnos
@@ -10,37 +12,25 @@ namespace C_23052025_RUD.Pages.Alumnos
     {
         [BindProperty]
         public Alumno Alumno { get; set; }
+
         public void OnGet(int id)
         {
-            foreach (var c in DatosCompartidos.Alumnos)
+            Alumno? alumno = ServicioAlumno.BuscarPorId(id);
+            if (alumno != null)
             {
-                if (c.Id == id)
-                {
-                    Alumno = c;
-                    break;
-                }
+              Alumno = alumno;
             }
         }
-        public IActionResult OnPost() 
+        public IActionResult OnPost()
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
+
                 return Page();
             }
-            foreach(var c in DatosCompartidos.Alumnos)
-            {
-                if(c.Id == Alumno.Id)
-                {
-                    c.Nombre = Alumno.Nombre;
-                    c.Apellido = Alumno.Apellido;
-                    c.Dni = Alumno.Dni;
-                    c.Ce = Alumno.Ce;
-                    c.Fn = Alumno.Fn;
-
-                    break;
-                }
-            }
-            return RedirectToPage("index");
+            ServicioAlumno.EditarAlumno(Alumno);
+            return RedirectToPage("Index");
         }
+
     }
 }

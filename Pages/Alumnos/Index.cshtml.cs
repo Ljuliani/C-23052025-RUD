@@ -1,6 +1,6 @@
 using C_23052025_RUD.Data;
 using C_23052025_RUD.Models;
-using Microsoft.AspNetCore.Mvc;
+using C_23052025_RUD.Servicios;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace C_23052025_RUD.Pages.Alumnos
@@ -10,7 +10,7 @@ namespace C_23052025_RUD.Pages.Alumnos
         public List<Alumno> Alumnos { get; set; }
         public void OnGet()
         {
-            Alumnos = DatosCompartidos.Alumnos;
+          Alumnos = ServicioAlumno.ObtenerAlumnos();
         }
     }
 }
