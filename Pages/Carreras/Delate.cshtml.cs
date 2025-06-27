@@ -9,9 +9,14 @@ namespace C_23052025_RUD.Pages.Carreras
     {
         [BindProperty]
         public Carrera Carrera { get; set; }
+        private readonly ServicioCarrera Servicio;
+        public DelateModel()
+        {
+            Servicio = new ServicioCarrera();
+        }
         public IActionResult OnGet(int id)
         {
-            var carrera = ServicioCarrera.BuscarPorId(id);
+            var carrera = Sc.BuscarPorId(id);
             if (carrera == null)
             {
                 return RedirectToPage("Index");
@@ -21,7 +26,7 @@ namespace C_23052025_RUD.Pages.Carreras
         }
         public IActionResult OnPost(int id) 
         {
-         ServicioCarrera.EliminarPorId(id);
+         Sc.EliminarPorId(id);
          return RedirectToPage("Index");
         }
     }

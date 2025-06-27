@@ -15,7 +15,7 @@ namespace C_23052025_RUD.Pages.Carreras
         public void OnGet(int id)
         {
          var Modalidades = OpcionesModalidad.Lista;
-         Carrera? carrera = ServicioCarrera.BuscarPorId(id);
+         Carrera? carrera = Sc.BuscarPorId(id);
          if (carrera != null)
          {
           Carrera = carrera;
@@ -29,7 +29,7 @@ namespace C_23052025_RUD.Pages.Carreras
          
          return Page();
             }
-            ServicioCarrera.EditarCarrera(Carrera);
+            Sc.EditarCarrera(Carrera);
             return RedirectToPage("Index");
         }
     }
