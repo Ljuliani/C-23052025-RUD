@@ -10,7 +10,9 @@ namespace C_23052025_RUD.Pages.Alumnos
         public List<Alumno> Alumnos { get; set; }
         public void OnGet()
         {
-          Alumnos = ServicioAlumno.ObtenerAlumnos();
+            //Alumnos = Sa.ObtenerAlumnos();
+            var RepoAlumno = new RepositorioCrudJson<Alumno>("alumnos");
+            Alumnos = RepoAlumno.ObtenerTodos();
         }
     }
 }

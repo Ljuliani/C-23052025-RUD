@@ -10,26 +10,33 @@ namespace C_23052025_RUD.Pages.Carreras
     public class EditModel : PageModel
     {
         [BindProperty]
-        public Carrera Carrera { get; set; }
-        
+        public Carrera? Carrera { get; set; }
+        private readonly ServicioCarrera Servicio;
+        EditModel()
+        {
+            Servicio = new ServicioCarrera();
+        }   
+
         public void OnGet(int id)
         {
+
          var Modalidades = OpcionesModalidad.Lista;
-         Carrera? carrera = Sc.BuscarPorId(id);
+         Carrera? carrera = Servicio.BuscarPorId(id);
          if (carrera != null)
          {
           Carrera = carrera;
          }
+
+
         }
         public IActionResult OnPost() 
         {
          var Modalidades = OpcionesModalidad.Lista;
          if (!ModelState.IsValid)
             { 
-         
-         return Page();
+             return Page();
             }
-            Sc.EditarCarrera(Carrera);
+            Servicio.Editar(Carrera);
             return RedirectToPage("Index");
         }
     }

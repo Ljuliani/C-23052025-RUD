@@ -11,9 +11,14 @@ namespace C_23052025_RUD.Pages.Alumnos
     {
         [BindProperty]
         public Alumno Alumno { get; set; }
+        private readonly ServicioAlumno Servicio;
+        public DelateModel()
+        {
+            Servicio = new ServicioAlumno();
+        }
         public IActionResult OnGet(int id)
         {
-            var alumno = ServicioAlumno.BuscarPorId(id);
+            var alumno = Servicio.BuscarPorId(id);
             if (alumno == null)
             {
                 return RedirectToPage("Index");
@@ -23,7 +28,7 @@ namespace C_23052025_RUD.Pages.Alumnos
         }
         public IActionResult OnPost(int id)
         {
-            ServicioAlumno.EliminarPorId(id);
+            Servicio.EliminarPorId(id);
             return RedirectToPage("Index");
         }
 

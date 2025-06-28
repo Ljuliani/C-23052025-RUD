@@ -11,11 +11,16 @@ namespace C_23052025_RUD.Pages.Alumnos
   public class EditModel : PageModel
     {
         [BindProperty]
-        public Alumno Alumno { get; set; }
+        public Alumno? Alumno { get; set; }
+        private readonly ServicioAlumno Servicios;
+        public EditModel()
+        {
+            Servicios = new ServicioAlumno();
+        }
 
         public void OnGet(int id)
         {
-            Alumno? alumno = ServicioAlumno.BuscarPorId(id);
+            Alumno? alumno = Servicios.BuscarPorId(id);
             if (alumno != null)
             {
               Alumno = alumno;
@@ -28,7 +33,7 @@ namespace C_23052025_RUD.Pages.Alumnos
 
                 return Page();
             }
-            ServicioAlumno.EditarAlumno(Alumno);
+            Servicios.Editar(Alumno);
             return RedirectToPage("Index");
         }
 

@@ -16,8 +16,8 @@ namespace C_23052025_RUD.Pages.Carreras
         }
         public IActionResult OnGet(int id)
         {
-            var carrera = Sc.BuscarPorId(id);
-            if (carrera == null)
+           var carrera = Servicio.BuscarPorId(id);
+            if (Servicio == null)
             {
                 return RedirectToPage("Index");
             }
@@ -26,7 +26,7 @@ namespace C_23052025_RUD.Pages.Carreras
         }
         public IActionResult OnPost(int id) 
         {
-         Sc.EliminarPorId(id);
+         Servicio.EliminarPorId(id);
          return RedirectToPage("Index");
         }
     }
