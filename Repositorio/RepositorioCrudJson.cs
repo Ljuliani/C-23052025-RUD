@@ -1,35 +1,24 @@
 ﻿using C_23052025_RUD.Models;
+using C_23052025_RUD.AccesoDatos;
 using System.Text.Json;
 
-namespace C_23052025_RUD.Servicios
+namespace C_23052025_RUD.Repositorio
 //Metodos reflectivos, (metodos SetValue, GetProperty, getValue, typeof) para obtener el Id de la entidad y asignarle un nuevo Id.
 {
-    public class RepositorioCrudJson<t> where t : class
+    public class RepositorioCrudJson<t> : iRepositorio<t> where t : class
     {
-        private string ruta;
-        public RepositorioCrudJson(string nombreArchivo)
+        private readonly iAccesoDatos<t> _acceso;
+        public RepositorioCrudJson(iAccesoDatos<t> acceso)
         {
-            ruta = $"data/{nombreArchivo}.json";
-        }
-        public string LeerTextoDelArchivo()
-        {
-            if (File.Exists(ruta))
-            {
-                return File.ReadAllText(ruta);
-            }
-            return "[]"; // Retorna un JSON vacío si el archivo no existe
-        }
-        public List<t> ObtenerTodos()
-        {
-            string json = LeerTextoDelArchivo();
-            var lista = JsonSerializer.Deserialize<List<t>>(json);
-            return lista ?? new List<t>();
-
+            _acceso = acceso;
         }
         public void Guardar(List<t> lista)
         {
-            string textoJson = JsonSerializer.Serialize(lista);
-            File.WriteAllText(ruta, textoJson);
+           _acceso.Guardar(lista);
+        }
+        public List<t> Obtenertodos()
+        {
+            return _acceso.Leer();
         }
 
         //Métodos con reflexion.
@@ -50,9 +39,8 @@ namespace C_23052025_RUD.Servicios
         }
         public void Agregar(t entidad)
         {
-            var lista = ObtenerTodos();
+            var lista = Obtenertodos();
             int nuevoId = ObtenerNuevoId(lista);
-            //nuevaCarrera.Id = ObtenerNuevoId(entidad);
             var propiedadId = typeof(t).GetProperty("Id");
             propiedadId.SetValue(entidad, nuevoId);
             lista.Add(entidad);
@@ -74,12 +62,12 @@ namespace C_23052025_RUD.Servicios
         }
         public t? BuscarPorId(int id)
         {
-            var lista = ObtenerTodos();
+            var lista = Obtenertodos();
             return BuscarEnListaPorId(lista, id);
         }
         public void EliminarPorId(int id)
         {
-            var lista = ObtenerTodos();
+            var lista = Obtenertodos();
             var itemEliminar = BuscarEnListaPorId(lista, id);
             if (itemEliminar != null)
             {
@@ -89,7 +77,7 @@ namespace C_23052025_RUD.Servicios
         }
         public void Editar(t entidadNueva)
         {
-            var lista = ObtenerTodos();
+            var lista = Obtenertodos();
             var propiedadId = typeof(t).GetProperty("Id");
             int id = (int)propiedadId.GetValue(entidadNueva);
             var entidadExistente = BuscarEnListaPorId(lista, id);

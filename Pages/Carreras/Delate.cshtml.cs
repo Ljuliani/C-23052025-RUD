@@ -1,7 +1,9 @@
+using C_23052025_RUD.AccesoDatos;
+using C_23052025_RUD.Models;
+using C_23052025_RUD.Repositorio;
+using C_23052025_RUD.Servicios;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using C_23052025_RUD.Models;
-using C_23052025_RUD.Servicios;
 
 namespace C_23052025_RUD.Pages.Carreras
 {
@@ -12,7 +14,9 @@ namespace C_23052025_RUD.Pages.Carreras
         private readonly ServicioCarrera Servicio;
         public DelateModel()
         {
-            Servicio = new ServicioCarrera();
+            iAccesoDatos<Carrera> acceso = new AccesoDatos<Carrera>("carreras");
+            iRepositorio<Carrera> repo = new RepositorioCrudJson<Carrera>(acceso);
+            Servicio = new ServicioCarrera(repo);
         }
         public IActionResult OnGet(int id)
         {

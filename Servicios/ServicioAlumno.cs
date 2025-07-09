@@ -1,33 +1,34 @@
 ﻿using C_23052025_RUD.Models;
+using C_23052025_RUD.Repositorio;
 
 namespace C_23052025_RUD.Servicios
 {
     public class ServicioAlumno
     {
-        private readonly RepositorioCrudJson<Alumno> crud;
-        public ServicioAlumno()
+        private readonly iRepositorio<Alumno> _repo;
+        public ServicioAlumno(iRepositorio<Alumno> repo)
         {
-            crud = new RepositorioCrudJson<Alumno>("alumnos");
+            _repo = repo;
         }
         public List<Alumno> Obtenertodos()
         {
-            return crud.ObtenerTodos();
+            return _repo.Obtenertodos();
         }
         public Alumno? BuscarPorId(int id)
         {
-            return crud.BuscarPorId(id);
+            return _repo.BuscarPorId(id);
         }
         public void Editar(Alumno alumno)
         {
-            crud.Editar(alumno);
+            _repo.Editar(alumno);
         }
         public void EliminarPorId(int id)
         {
-            crud.EliminarPorId(id);
+            _repo.EliminarPorId(id);
         }
         public void Agregar(Alumno alumno)
         {
-            crud.Agregar(alumno);
+            _repo.Agregar(alumno);
         }
     }
 }
