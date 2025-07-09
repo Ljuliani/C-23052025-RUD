@@ -28,10 +28,12 @@
             <input asp-for="Alumno.Ce" class="form-control" />
         </div>
 
-        <div class="form.group">
-            <Display>Date Of Birth</Display>
-            <input asp-for="Alumno.Fn" class="form-control" />
-        </div>
+    <div class="form-group">
+        <display>Date of birth</display>
+        <input asp-for="Alumno.Fn" type="date" class="form-control" />
+        <span asp-validation-for="Alumno.Fn" class="text-danger"></span>
+
+    </div>
 
         <button type="submit" class="btn btn-primary">Save Changes</button>
 
