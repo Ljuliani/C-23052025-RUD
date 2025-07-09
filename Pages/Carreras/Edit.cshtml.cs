@@ -12,6 +12,7 @@ namespace C_23052025_RUD.Pages.Carreras
     {
         [BindProperty]
         public Carrera? Carrera { get; set; }
+        public List<string> Modalidades { get; set; } = new();
         private readonly ServicioCarrera Servicio;
         public EditModel()
         {
@@ -23,8 +24,8 @@ namespace C_23052025_RUD.Pages.Carreras
         public void OnGet(int id)
         {
 
-         var Modalidades = OpcionesModalidad.Lista;
-         Carrera? carrera = Servicio.BuscarPorId(id);
+            Modalidades = OpcionesModalidad.Lista;
+            Carrera? carrera = Servicio.BuscarPorId(id);
          if (carrera != null)
          {
           Carrera = carrera;
@@ -34,8 +35,8 @@ namespace C_23052025_RUD.Pages.Carreras
         }
         public IActionResult OnPost() 
         {
-         var Modalidades = OpcionesModalidad.Lista;
-         if (!ModelState.IsValid)
+            Modalidades = OpcionesModalidad.Lista;
+            if (!ModelState.IsValid)
             { 
              return Page();
             }

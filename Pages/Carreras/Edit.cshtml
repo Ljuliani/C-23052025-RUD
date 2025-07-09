@@ -22,9 +22,14 @@
         <input asp-for="Carrera.Titulootorgado" class="form-control" />
     </div>
 
-    <div class="form.group">
-        <label asp-for="Carrera.Modalidad"></label>
-        <input asp-for="Carrera.Modalidad" class="form-control" />
+    <div class="form-group">
+        <display>Modality</display>
+        <select asp-for="Carrera.Modalidad"
+                asp-items="@(new SelectList(Model.Modalidades))"
+                class="form-control">
+            <option value="">Select a modality</option>
+        </select>
+        <span asp-validation-for="Carrera.Modalidad" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Save Changes</button>
 
