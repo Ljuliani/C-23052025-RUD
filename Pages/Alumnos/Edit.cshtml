@@ -7,27 +7,29 @@
         <input type="hidden" asp-for="Alumno.Id" />
 
         <div class="form.group">
-            <label asp-for="Alumno.Nombre"></label>
+
+            <Display>Name</Display>
             <input asp-for="Alumno.Nombre" class="form-control" />
         </div>
 
         <div class="form.group">
-            <label asp-for="Alumno.Apellido"></label>
+
+            <Display>Surname</Display>
             <input asp-for="Alumno.Apellido" class="form-control" />
         </div>
 
-        <div class="form.group">
-            <label asp-for="Alumno.Dni"></label>
+            <div class="form.group">
+            <Display>N° ID</Display>
             <input asp-for="Alumno.Dni" class="form-control" />
-        </div>
+            </div>
 
         <div class="form.group">
-            <label asp-for="Alumno.Ce"></label>
+            <Displa>E-mail</Display>
             <input asp-for="Alumno.Ce" class="form-control" />
         </div>
 
         <div class="form.group">
-            <label asp-for="Alumno.Fn"></label>
+            <Display>Date Of Birth</Display>
             <input asp-for="Alumno.Fn" class="form-control" />
         </div>
 
