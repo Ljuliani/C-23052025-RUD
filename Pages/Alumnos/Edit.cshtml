@@ -10,22 +10,26 @@
 
             <Display>Name</Display>
             <input asp-for="Alumno.Nombre" class="form-control" />
+        <span asp-validation-for="Alumno.Nombre" class="text-danger"></span>
         </div>
 
         <div class="form.group">
 
             <Display>Surname</Display>
             <input asp-for="Alumno.Apellido" class="form-control" />
+            <span asp-validation-for="Alumno.Apellido" class="text-danger"></span>
         </div>
 
             <div class="form.group">
             <Display>N° ID</Display>
             <input asp-for="Alumno.Dni" class="form-control" />
+            <span asp-validation-for="Alumno.Dni" class="text-danger"></span>
             </div>
 
         <div class="form.group">
-            <Displa>E-mail</Display>
+            <Display>E-mail</Display>
             <input asp-for="Alumno.Ce" class="form-control" />
+            <span asp-validation-for="Alumno.Ce" class="text-danger"></span>
         </div>
 
     <div class="form-group">
