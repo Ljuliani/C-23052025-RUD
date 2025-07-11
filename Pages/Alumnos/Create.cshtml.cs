@@ -31,6 +31,11 @@ namespace C_23052025_RUD.Pages.Alumnos
             {
                 return Page();
             }
+            if(Servicios.CDD(Alumno.Dni))
+            {
+                 ModelState.AddModelError("Alumno.Dni", "Student id, currently exists");
+                return Page();
+            }
             Servicios.Agregar(Alumno);
             return RedirectToPage("Index");
 

@@ -1,5 +1,4 @@
 using C_23052025_RUD.AccesoDatos;
-using C_23052025_RUD.Data;
 using C_23052025_RUD.Models;
 using C_23052025_RUD.Repositorio;
 using C_23052025_RUD.Servicios;

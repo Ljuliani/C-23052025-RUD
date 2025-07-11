@@ -30,5 +30,9 @@ namespace C_23052025_RUD.Servicios
         {
             _repo.Agregar(alumno);
         }
+        public  bool CDD(int dni)
+        {
+            return Obtenertodos().Any(alumno => alumno.Dni == dni && alumno.Dni > 0);
+        }
     }
 }
